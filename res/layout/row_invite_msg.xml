@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/mm_listitem_grey"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_row_weixin"
+        android:gravity="center_vertical" >
+
+        <RelativeLayout
+            android:id="@+id/avatar_container"
+            android:layout_width="@dimen/height_row_weixin"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true" >
+
+            <ImageView
+                android:id="@+id/avatar"
+                android:layout_width="@dimen/height_row_weixin"
+                android:layout_height="@dimen/height_row_weixin"
+                android:layout_marginLeft="10dp"
+                android:padding="5dp"
+                android:src="@drawable/default_avatar" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/newFriname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="6dp"
+            android:layout_toRightOf="@id/avatar_container"
+            android:textColor="#000"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/user_state"
+            android:layout_toRightOf="@+id/avatar_container"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:padding="7dp"
+            android:text="请求关注你"
+            android:textColor="#888888"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/user_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="同意"
+            android:textSize="13sp" />
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_bg" >
+
+    <RelativeLayout
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_top_bar"
+        android:background="@color/top_bar_normal_bg"
+        android:gravity="center_vertical" >
+
+        <LinearLayout
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="5dp" >
+
+            <Button
+                android:id="@+id/btn_i_care"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:background="@drawable/house_rent_selected"
+                android:padding="3dp"
+                android:text="我关注的人"
+                android:textColor="@drawable/tv_touch_color"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/btn_care_i"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:background="@drawable/house_sell_selected"
+                android:padding="3dp"
+                android:text="关注我的人"
+                android:textColor="@drawable/tv_touch_color"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/id_unread_dot"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:visibility="gone"
+            android:src="@drawable/unread_dot" />
+
+        <ImageView
+            android:id="@+id/iv_add"
+            android:layout_width="25dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/common_tab_bg"
+            android:clickable="true"
+            android:scaleType="centerInside"
+            android:layout_marginRight="10dip"
+            android:src="@drawable/add" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/main_bottom"
+        android:layout_below="@+id/top_bar" />
+
+    <include
+        android:id="@+id/pop_dialog_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/top_bar"
+        layout="@layout/pop_dialog"
+        android:clickable="true"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/main_bottom"
+        layout="@layout/tab_bottom" />
+
+</RelativeLayout>
