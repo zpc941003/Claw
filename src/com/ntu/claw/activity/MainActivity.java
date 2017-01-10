@@ -77,7 +77,6 @@ import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.map.PolylineOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.model.LatLngBounds;
-import com.mindpin.android.circlebutton.CircleButton;
 import com.ntu.claw.MyApplication;
 import com.ntu.claw.R;
 import com.ntu.claw.cache.DiskLruCacheHelper;
@@ -90,6 +89,7 @@ import com.ntu.claw.utils.L;
 import com.ntu.claw.utils.NetUtils;
 import com.ntu.claw.utils.SPUtils;
 import com.ntu.claw.utils.T;
+import com.ntu.claw.widget.CircleButton;
 
 public class MainActivity extends Activity implements OnClickListener, Observer {
 

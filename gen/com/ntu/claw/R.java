@@ -70,11 +70,11 @@ public final class R {
         <item>Jack</item>
         <item>~夏先生</item> 
          */
-        public static final int date=0x7f080000;
-        public static final int pref_example_list_titles=0x7f080001;
-        public static final int pref_example_list_values=0x7f080002;
-        public static final int pref_sync_frequency_titles=0x7f080003;
-        public static final int pref_sync_frequency_values=0x7f080004;
+        public static final int date=0x7f060000;
+        public static final int pref_example_list_titles=0x7f060001;
+        public static final int pref_example_list_values=0x7f060002;
+        public static final int pref_sync_frequency_titles=0x7f060003;
+        public static final int pref_sync_frequency_values=0x7f060004;
     }
     public static final class attr {
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
@@ -127,60 +127,60 @@ containing a value of this type.
     public static final class color {
         /**  灰色 
          */
-        public static final int bg_Gray=0x7f090029;
+        public static final int bg_Gray=0x7f070029;
         /**  浅灰色 
          */
-        public static final int bg_Gray_light=0x7f090026;
+        public static final int bg_Gray_light=0x7f070026;
         /**  浅蓝色
          */
-        public static final int bg_blue_light=0x7f090028;
+        public static final int bg_blue_light=0x7f070028;
         /**  红色 
          */
-        public static final int bg_red=0x7f090027;
-        public static final int black_deep=0x7f090020;
-        public static final int bottom_bar_normal_bg=0x7f09000f;
-        public static final int bottom_text_color_normal=0x7f090010;
-        public static final int btn_answer_normal=0x7f090022;
-        public static final int btn_answer_pressed=0x7f090021;
-        public static final int btn_blue_normal=0x7f090018;
-        public static final int btn_blue_pressed=0x7f090019;
-        public static final int btn_gray_normal=0x7f090015;
-        public static final int btn_gray_pressed=0x7f090017;
-        public static final int btn_gray_pressed_status=0x7f090016;
-        public static final int btn_green_noraml=0x7f090013;
-        public static final int btn_green_pressed=0x7f090014;
-        public static final int btn_login_normal=0x7f090001;
-        public static final int btn_login_pressed=0x7f090002;
-        public static final int btn_logout_normal=0x7f090003;
-        public static final int btn_logout_pressed=0x7f090004;
-        public static final int btn_pressed_green_solid=0x7f09000b;
-        public static final int btn_register_normal=0x7f090005;
-        public static final int btn_register_pressed=0x7f090006;
-        public static final int btn_white_normal=0x7f090011;
-        public static final int btn_white_pressed=0x7f090012;
-        public static final int common_bg=0x7f09000a;
-        public static final int common_bottom_bar_normal_bg=0x7f090007;
-        public static final int common_bottom_bar_selected_bg=0x7f090008;
-        public static final int common_botton_bar_blue=0x7f090009;
-        public static final int common_top_bar_blue=0x7f090000;
-        public static final int creen=0x7f09002a;
-        public static final int divider_list=0x7f09000c;
-        public static final int error_item_color=0x7f09000e;
-        public static final int gray_normal=0x7f09001c;
-        public static final int gray_pressed=0x7f09001b;
-        public static final int grid_state_focused=0x7f09001e;
-        public static final int grid_state_pressed=0x7f09001d;
-        public static final int main_botton_text_color=0x7f09002b;
-        public static final int orange=0x7f09001a;
+        public static final int bg_red=0x7f070027;
+        public static final int black_deep=0x7f070020;
+        public static final int bottom_bar_normal_bg=0x7f07000f;
+        public static final int bottom_text_color_normal=0x7f070010;
+        public static final int btn_answer_normal=0x7f070022;
+        public static final int btn_answer_pressed=0x7f070021;
+        public static final int btn_blue_normal=0x7f070018;
+        public static final int btn_blue_pressed=0x7f070019;
+        public static final int btn_gray_normal=0x7f070015;
+        public static final int btn_gray_pressed=0x7f070017;
+        public static final int btn_gray_pressed_status=0x7f070016;
+        public static final int btn_green_noraml=0x7f070013;
+        public static final int btn_green_pressed=0x7f070014;
+        public static final int btn_login_normal=0x7f070001;
+        public static final int btn_login_pressed=0x7f070002;
+        public static final int btn_logout_normal=0x7f070003;
+        public static final int btn_logout_pressed=0x7f070004;
+        public static final int btn_pressed_green_solid=0x7f07000b;
+        public static final int btn_register_normal=0x7f070005;
+        public static final int btn_register_pressed=0x7f070006;
+        public static final int btn_white_normal=0x7f070011;
+        public static final int btn_white_pressed=0x7f070012;
+        public static final int common_bg=0x7f07000a;
+        public static final int common_bottom_bar_normal_bg=0x7f070007;
+        public static final int common_bottom_bar_selected_bg=0x7f070008;
+        public static final int common_botton_bar_blue=0x7f070009;
+        public static final int common_top_bar_blue=0x7f070000;
+        public static final int creen=0x7f07002a;
+        public static final int divider_list=0x7f07000c;
+        public static final int error_item_color=0x7f07000e;
+        public static final int gray_normal=0x7f07001c;
+        public static final int gray_pressed=0x7f07001b;
+        public static final int grid_state_focused=0x7f07001e;
+        public static final int grid_state_pressed=0x7f07001d;
+        public static final int main_botton_text_color=0x7f07002b;
+        public static final int orange=0x7f07001a;
         /**  验证码背景橘黄色 
          */
-        public static final int title_bg=0x7f090025;
-        public static final int top_bar_normal_bg=0x7f09000d;
+        public static final int title_bg=0x7f070025;
+        public static final int top_bar_normal_bg=0x7f07000d;
         /**  黑色 
          */
-        public static final int tv_Black=0x7f090023;
-        public static final int voip_interface_text_color=0x7f09001f;
-        public static final int white=0x7f090024;
+        public static final int tv_Black=0x7f070023;
+        public static final int voip_interface_text_color=0x7f07001f;
+        public static final int white=0x7f070024;
     }
     public static final class dimen {
         /** 
@@ -189,21 +189,21 @@ containing a value of this type.
          would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively).
     
          */
-        public static final int activity_horizontal_margin=0x7f0a000b;
-        public static final int activity_vertical_margin=0x7f0a000c;
-        public static final int call_button_padding_left=0x7f0a0008;
-        public static final int call_button_padding_right=0x7f0a0009;
-        public static final int call_button_padding_vertical=0x7f0a0007;
-        public static final int field_margin_right=0x7f0a0006;
-        public static final int field_textsize=0x7f0a0005;
-        public static final int height_row_weixin=0x7f0a0002;
-        public static final int height_top_bar=0x7f0a0000;
-        public static final int image_thumbnail_size=0x7f0a000d;
-        public static final int image_thumbnail_spacing=0x7f0a000e;
-        public static final int margin_chat_activity=0x7f0a0004;
-        public static final int padding_search_bar=0x7f0a0001;
-        public static final int sidebar_text_size=0x7f0a000a;
-        public static final int size_avatar=0x7f0a0003;
+        public static final int activity_horizontal_margin=0x7f08000b;
+        public static final int activity_vertical_margin=0x7f08000c;
+        public static final int call_button_padding_left=0x7f080008;
+        public static final int call_button_padding_right=0x7f080009;
+        public static final int call_button_padding_vertical=0x7f080007;
+        public static final int field_margin_right=0x7f080006;
+        public static final int field_textsize=0x7f080005;
+        public static final int height_row_weixin=0x7f080002;
+        public static final int height_top_bar=0x7f080000;
+        public static final int image_thumbnail_size=0x7f08000d;
+        public static final int image_thumbnail_spacing=0x7f08000e;
+        public static final int margin_chat_activity=0x7f080004;
+        public static final int padding_search_bar=0x7f080001;
+        public static final int sidebar_text_size=0x7f08000a;
+        public static final int size_avatar=0x7f080003;
     }
     public static final class drawable {
         public static final int a2=0x7f020000;
@@ -505,73 +505,51 @@ containing a value of this type.
         public static final int self_trace=0x7f0b000b;
     }
     public static final class string {
-        public static final int action_settings=0x7f060004;
-        public static final int app_name=0x7f060002;
-        public static final int hello_world=0x7f060003;
-        public static final int lib_name=0x7f060000;
-        public static final int lib_version=0x7f060001;
-        public static final int pref_default_display_name=0x7f060013;
-        public static final int pref_description_social_recommendations=0x7f060011;
+        public static final int action_settings=0x7f090002;
+        public static final int app_name=0x7f090000;
+        public static final int hello_world=0x7f090001;
+        public static final int pref_default_display_name=0x7f090011;
+        public static final int pref_description_social_recommendations=0x7f09000f;
         /**  Example settings for Data & Sync 
          */
-        public static final int pref_header_data_sync=0x7f060015;
+        public static final int pref_header_data_sync=0x7f090013;
         /**  Strings related to Settings 
  Example General settings 
          */
-        public static final int pref_header_general=0x7f06000f;
+        public static final int pref_header_general=0x7f09000d;
         /**  Example settings for Notifications 
          */
-        public static final int pref_header_notifications=0x7f060018;
-        public static final int pref_ringtone_silent=0x7f06001b;
-        public static final int pref_title_add_friends_to_messages=0x7f060014;
-        public static final int pref_title_display_name=0x7f060012;
-        public static final int pref_title_new_message_notifications=0x7f060019;
-        public static final int pref_title_ringtone=0x7f06001a;
-        public static final int pref_title_social_recommendations=0x7f060010;
-        public static final int pref_title_sync_frequency=0x7f060016;
-        public static final int pref_title_system_sync_settings=0x7f060017;
-        public static final int pref_title_vibrate=0x7f06001c;
-        public static final int title_activity_add_contact=0x7f060007;
-        public static final int title_activity_contact=0x7f060006;
-        public static final int title_activity_fri_record=0x7f06000c;
-        public static final int title_activity_fri_trace=0x7f06000d;
-        public static final int title_activity_off_line_map=0x7f060008;
-        public static final int title_activity_offline_map_done=0x7f060009;
-        public static final int title_activity_register=0x7f060005;
-        public static final int title_activity_self_record=0x7f06000a;
-        public static final int title_activity_self_trace=0x7f06000b;
-        public static final int title_activity_settings=0x7f06000e;
+        public static final int pref_header_notifications=0x7f090016;
+        public static final int pref_ringtone_silent=0x7f090019;
+        public static final int pref_title_add_friends_to_messages=0x7f090012;
+        public static final int pref_title_display_name=0x7f090010;
+        public static final int pref_title_new_message_notifications=0x7f090017;
+        public static final int pref_title_ringtone=0x7f090018;
+        public static final int pref_title_social_recommendations=0x7f09000e;
+        public static final int pref_title_sync_frequency=0x7f090014;
+        public static final int pref_title_system_sync_settings=0x7f090015;
+        public static final int pref_title_vibrate=0x7f09001a;
+        public static final int title_activity_add_contact=0x7f090005;
+        public static final int title_activity_contact=0x7f090004;
+        public static final int title_activity_fri_record=0x7f09000a;
+        public static final int title_activity_fri_trace=0x7f09000b;
+        public static final int title_activity_off_line_map=0x7f090006;
+        public static final int title_activity_offline_map_done=0x7f090007;
+        public static final int title_activity_register=0x7f090003;
+        public static final int title_activity_self_record=0x7f090008;
+        public static final int title_activity_self_trace=0x7f090009;
+        public static final int title_activity_settings=0x7f09000c;
     }
     public static final class style {
-        public static final int AnimBottom=0x7f070007;
-        public static final int AnimFade=0x7f070005;
-        public static final int AnimFade2=0x7f070006;
-        public static final int AnimHead=0x7f07000a;
-        public static final int AnimTop=0x7f070008;
-        public static final int AnimTop2=0x7f070009;
-        public static final int Anim_style=0x7f07000b;
-        public static final int Anim_style2=0x7f07000c;
+        public static final int AnimBottom=0x7f0a0006;
+        public static final int AnimFade=0x7f0a0004;
+        public static final int AnimFade2=0x7f0a0005;
+        public static final int AnimHead=0x7f0a0009;
+        public static final int AnimTop=0x7f0a0007;
+        public static final int AnimTop2=0x7f0a0008;
+        public static final int Anim_style=0x7f0a000a;
+        public static final int Anim_style2=0x7f0a000b;
         /** 
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    
-
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        
-
-        Base application theme for API 11+. This theme completely replaces
-        AppBaseTheme from res/values/styles.xml on API 11+ devices.
-    
- API 11 theme customizations can go here. 
-
-        Base application theme for API 14+. This theme completely replaces
-        AppBaseTheme from BOTH res/values/styles.xml and
-        res/values-v11/styles.xml on API 14+ devices.
-    
- API 14 theme customizations can go here. 
-
         Base application theme for API 11+. This theme completely replaces
         AppBaseTheme from res/values/styles.xml on API 11+ devices.
 
@@ -584,35 +562,32 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f070000;
-        /**  Application theme. 
- All customizations that are NOT specific to a particular API-level can go here. 
-         */
-        public static final int AppTheme=0x7f070001;
+        public static final int AppBaseTheme=0x7f0a0015;
+        public static final int AppTheme=0x7f0a0000;
         /**  模糊 
          */
-        public static final int HeadScale=0x7f070013;
-        public static final int MyAlertDialog=0x7f070010;
+        public static final int HeadScale=0x7f0a0012;
+        public static final int MyAlertDialog=0x7f0a000f;
         /** 
     <style name="horizontal_slide2" parent="android:style/Theme.Holo.Light.NoActionBar">
         <item name="android:windowAnimationStyle">@style/AnimFade2</item>
     </style>
     
          */
-        public static final int MyDialogStyle=0x7f07000f;
+        public static final int MyDialogStyle=0x7f0a000e;
         /**  模糊 
          */
-        public static final int MyDialogStyleBottom=0x7f070011;
+        public static final int MyDialogStyleBottom=0x7f0a0010;
         /**  模糊 
          */
-        public static final int MyDialogStyleTop=0x7f070012;
-        public static final int bottom_line_edit_text_style=0x7f070015;
-        public static final int chat_content_date_style=0x7f070002;
-        public static final int chat_text_date_style=0x7f070004;
-        public static final int chat_text_name_style=0x7f070003;
-        public static final int devide_line_eee=0x7f070014;
-        public static final int horizontal_slide=0x7f07000d;
-        public static final int nornal_style=0x7f07000e;
+        public static final int MyDialogStyleTop=0x7f0a0011;
+        public static final int bottom_line_edit_text_style=0x7f0a0014;
+        public static final int chat_content_date_style=0x7f0a0001;
+        public static final int chat_text_date_style=0x7f0a0003;
+        public static final int chat_text_name_style=0x7f0a0002;
+        public static final int devide_line_eee=0x7f0a0013;
+        public static final int horizontal_slide=0x7f0a000c;
+        public static final int nornal_style=0x7f0a000d;
     }
     public static final class xml {
         public static final int pref_data_sync=0x7f050000;

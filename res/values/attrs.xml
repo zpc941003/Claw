@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CircleButton">
+        <attr name="bg_color" format="color" />
+        <attr name="text" format="string" />
+        <attr name="text_size_dp" format="dimension" />
+        <attr name="text_color" format="color" />
+        <attr name="pressed_ring_width" format="dimension" />
+    </declare-styleable>
+</resources>

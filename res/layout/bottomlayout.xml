@@ -5,7 +5,7 @@
     android:layout_height="200dp"
     android:background="#ffffff" >
     
-    <com.mindpin.android.circlebutton.CircleButton
+    <com.ntu.claw.widget.CircleButton
         android:id="@+id/recordbtn"
         android:layout_width="128dp"
         android:layout_height="128dp"
