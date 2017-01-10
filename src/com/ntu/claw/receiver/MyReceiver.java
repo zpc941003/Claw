@@ -33,9 +33,10 @@ public class MyReceiver extends BroadcastReceiver {
 		if (JPushInterface.ACTION_REGISTRATION_ID.equals(intent.getAction())) {
 		} else if (JPushInterface.ACTION_MESSAGE_RECEIVED.equals(intent
 				.getAction())) {
-			System.out.println("收到了自定义消息。消息内容是："
-					+ bundle.getString(JPushInterface.EXTRA_MESSAGE));
+			//System.out.println("收到了自定义消息。消息内容是："
+				//	+ bundle.getString(JPushInterface.EXTRA_MESSAGE));
 			// 自定义消息不会展示在通知栏，完全要开发者写代码去处理
+			ObservableObject.getInstance().updateValue(bundle.getString(JPushInterface.EXTRA_MESSAGE));
 
 		} else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent
 				.getAction())) {
@@ -54,9 +55,10 @@ public class MyReceiver extends BroadcastReceiver {
 					String selfmobile=(String) SPUtils.get(context, "mobile", "");
 					try {
 						JSONObject json=new JSONObject(extras);
-						String mobile=json.getString("mobile");
-						String username=json.getString("username");
-						dao.saveFriAsk(selfmobile, mobile, username);
+						String mobile=json.optString("mobile","");
+						String username=json.optString("username","");
+						String avater=json.optString("avater","");
+						dao.saveFriAsk(selfmobile, mobile, username,avater);
 					} catch (JSONException e) {
 						e.printStackTrace();
 					}

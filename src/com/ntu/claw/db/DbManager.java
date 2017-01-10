@@ -100,6 +100,28 @@ public class DbManager {
 	}
 
 	/**
+	 * 获取头像
+	 * 
+	 * @param mobile
+	 * @return
+	 */
+	synchronized public String getAvaterUrl(String mobile) {
+		String avater = "";
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+		if (db.isOpen()) {
+			Cursor cursor = db.rawQuery("select avater from " + Dao.TABLE_ICARE
+					+ " where " + Dao.COLUMN_FRIENDMOBILE + "=" + mobile, null);
+			if (cursor.moveToNext()) {
+				avater = cursor.getString(cursor
+						.getColumnIndex(Dao.COLUMN_AVATER));
+			}
+			cursor.close();
+			db.close();
+		}
+		return avater;
+	}
+
+	/**
 	 * 保存我关注的好友列表
 	 * 
 	 * @param list
@@ -177,13 +199,14 @@ public class DbManager {
 	 * @param friendName
 	 */
 	synchronized public void saveFriAsk(String selfmobile, String mobile,
-			String friendName) {
+			String friendName, String avater) {
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		if (db.isOpen()) {
 			ContentValues values = new ContentValues();
 			values.put(Dao.COLUMN_FRIENDMOBILE, mobile);
 			values.put(Dao.COLUMN_FRIENDNAME, friendName);
 			values.put(Dao.COLUMN_SELFMOBILE, selfmobile);
+			values.put(Dao.COLUMN_AVATER, avater);
 			values.put(Dao.COLUMN_ISAGREE, "disagree");
 			db.insert(Dao.TABLE_FRIASK, null, values);
 			db.close();
@@ -208,6 +231,8 @@ public class DbManager {
 						.getColumnIndex(Dao.COLUMN_FRIENDNAME)));
 				fab.setMobile(cursor.getString(cursor
 						.getColumnIndex(Dao.COLUMN_FRIENDMOBILE)));
+				fab.setAvater(cursor.getString(cursor
+						.getColumnIndex(Dao.COLUMN_AVATER)));
 				fab.setStatus(cursor.getString(cursor
 						.getColumnIndex(Dao.COLUMN_ISAGREE)));
 				list.add(fab);
@@ -401,9 +426,8 @@ public class DbManager {
 		SQLiteDatabase db = dbHelper.getReadableDatabase();
 		if (db.isOpen()) {
 			Cursor c = db.rawQuery("select * from " + Dao.TABLE_TRACE
-					+ " where " + Dao.COLUMN_USERID + "='" + mobile + "' and "
-					+ Dao.COLUMN_ENDTIME + " is not null order by "
-					+ Dao.COLUMN_STARTTIME + " desc", null);
+					+ " where " + Dao.COLUMN_USERID + "='" + mobile
+					+ "' order by " + Dao.COLUMN_STARTTIME + " desc", null);
 			if (c != null) {
 				while (c.moveToNext()) {
 					TraceBean item = new TraceBean();
@@ -411,8 +435,13 @@ public class DbManager {
 							.getColumnIndex(Dao.COLUMN_TRACEID)));
 					item.setStarttime(c.getString(c
 							.getColumnIndex(Dao.COLUMN_STARTTIME)));
-					item.setEndtime(c.getString(c
-							.getColumnIndex(Dao.COLUMN_ENDTIME)));
+					String endtime = c.getString(c
+							.getColumnIndex(Dao.COLUMN_ENDTIME));
+					if (endtime == null || endtime == "") {
+						endtime = getEndtime(c.getString(c
+								.getColumnIndex(Dao.COLUMN_TRACEID)));
+					}
+					item.setEndtime(endtime);
 					item.setDistance(c.getString(c
 							.getColumnIndex(Dao.COLUMN_DISTANCE)));
 					list.add(item);
@@ -422,6 +451,25 @@ public class DbManager {
 			db.close();
 		}
 		return list;
+	}
+
+	private String getEndtime(String trace_id) {
+		String endtime = null;
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+		if (db.isOpen()) {
+			Cursor c = db.rawQuery("select " + Dao.COLUMN_TIME + " from "
+					+ Dao.TABLE_RECORD + " where " + Dao.COLUMN_TRACEID + "='"
+					+ trace_id + "' order by " + Dao.COLUMN_TIME
+					+ " desc", null);
+			if (c != null) {
+				if (c.moveToNext()) {
+					endtime=c.getString(c.getColumnIndex(Dao.COLUMN_TIME));
+				}
+				c.close();
+			}
+			db.close();
+		}
+		return endtime;
 	}
 
 	/**
@@ -443,8 +491,13 @@ public class DbManager {
 							.getColumnIndex(Dao.COLUMN_TRACEID)));
 					item.setStarttime(c.getString(c
 							.getColumnIndex(Dao.COLUMN_STARTTIME)));
-					item.setEndtime(c.getString(c
-							.getColumnIndex(Dao.COLUMN_ENDTIME)));
+					String endtime = c.getString(c
+							.getColumnIndex(Dao.COLUMN_ENDTIME));
+					if (endtime == null || endtime == "") {
+						endtime = getEndtime(c.getString(c
+								.getColumnIndex(Dao.COLUMN_TRACEID)));
+					}
+					item.setEndtime(endtime);
 					item.setDistance(c.getString(c
 							.getColumnIndex(Dao.COLUMN_DISTANCE)));
 				}
@@ -545,6 +598,7 @@ public class DbManager {
 
 	/**
 	 * 更新手机号
+	 * 
 	 * @param updateMobile
 	 * @param mobile
 	 */

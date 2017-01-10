@@ -11,6 +11,8 @@
     <permission
         android:name="com.ntu.claw.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature" />
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <!-- Required  一些系统要求的权限，如访问网络等 -->
     <uses-permission android:name="com.ntu.claw.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
@@ -147,6 +149,11 @@
         </activity>
         <activity
             android:name="com.ntu.claw.activity.ChangePwdActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide" >
+        </activity>
+        <activity
+            android:name="com.ntu.claw.activity.AboutActivity"
             android:screenOrientation="portrait"
             android:theme="@style/horizontal_slide" >
         </activity>

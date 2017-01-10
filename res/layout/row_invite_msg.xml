@@ -17,7 +17,7 @@
             android:layout_alignParentLeft="true" >
 
             <ImageView
-                android:id="@+id/avatar"
+                android:id="@+id/invite_avatar"
                 android:layout_width="@dimen/height_row_weixin"
                 android:layout_height="@dimen/height_row_weixin"
                 android:layout_marginLeft="10dp"

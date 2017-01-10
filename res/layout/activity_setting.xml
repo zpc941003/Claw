@@ -27,9 +27,9 @@
 
     <LinearLayout
         android:id="@+id/setting_layout"
-        android:layout_below="@id/top_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/top_bar"
         android:background="#ebebeb"
         android:orientation="vertical" >
 
@@ -154,7 +154,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/re_setting"
+            android:id="@+id/re_opengps"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="20dp"
@@ -163,21 +163,85 @@
             android:paddingLeft="12dp" >
 
             <ImageView
-                android:id="@+id/iv_setting"
+                android:id="@+id/iv_opengps"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="12dp"
-                android:src="@drawable/akf" />
+                android:src="@drawable/gps" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
-                android:layout_toRightOf="@id/iv_setting"
-                android:text="设置"
+                android:layout_toRightOf="@id/iv_opengps"
+                android:text="开启GPS"
+                android:textColor="#353535"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="12dp"
+                android:background="#dadada" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/re_clearcache"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/btn_list_item_bg"
+            android:clickable="true"
+            android:paddingLeft="12dp" >
+
+            <ImageView
+                android:id="@+id/iv_clearcache"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:src="@drawable/clearcache" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/iv_clearcache"
+                android:text="清除缓存"
+                android:textColor="#353535"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/re_about"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_list_item_bg"
+            android:clickable="true"
+            android:paddingLeft="12dp" >
+
+            <ImageView
+                android:id="@+id/iv_about"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:src="@drawable/state" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/iv_about"
+                android:text="关于"
                 android:textColor="#353535"
                 android:textSize="16sp" />
         </RelativeLayout>

@@ -272,9 +272,14 @@ public class SelfRecordActivity extends Activity {
 			}
 			String st = bean.getStarttime();
 			String et = bean.getEndtime();
+			if(st!=null&&st!=""&&et!=null&&et!=""){
 			holder.tv_date.setText(bean.getStarttime().substring(0, 10));
 			holder.tv_time.setText(st.substring(st.length() - 8, st.length())
 					+ "-" + et.substring(et.length() - 8, et.length()));
+			}else{
+				holder.tv_date.setText(bean.getStarttime().substring(0, 10));
+				holder.tv_time.setText("-");
+			}
 			return convertView;
 		}
 

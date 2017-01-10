@@ -69,8 +69,8 @@ public class Dao {
 		return DbManager.getInstance().findSameMobile(mobile, selfmobile);
 	}
 
-	public void saveFriAsk(String selfmobile, String mobile, String friendName) {
-		DbManager.getInstance().saveFriAsk(selfmobile, mobile, friendName);
+	public void saveFriAsk(String selfmobile, String mobile, String friendName,String avater) {
+		DbManager.getInstance().saveFriAsk(selfmobile, mobile, friendName,avater);
 	}
 
 	public List<FriAskBean> getFriAsk(String selfmobile) {
@@ -137,5 +137,9 @@ public class Dao {
 	
 	public void updateMobile(String updateMobile, String mobile){
 		DbManager.getInstance().updateMobile(updateMobile, mobile);
+	}
+	
+	public String getAvaterUrl(String mobile){
+		return DbManager.getInstance().getAvaterUrl(mobile);
 	}
 }

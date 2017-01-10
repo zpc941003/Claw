@@ -48,6 +48,8 @@ public class LocationService extends Service {
 
 	private String lastLat="";
 	private String lastLon="";
+	
+	private String selfmobile;
 	/**
 	 * 定位回调接口
 	 */
@@ -72,6 +74,7 @@ public class LocationService extends Service {
 	public void onCreate() {
 		L.i("service-onCreate");
 		dao = new Dao(getApplicationContext());
+		selfmobile=SPUtils.get(getApplicationContext(), "mobile", "").toString();
 		// 定位初始化设置
 		initLocation();
 		// 开启定位
@@ -128,11 +131,17 @@ public class LocationService extends Service {
 			final String latitude = "" + location.getLatitude();
 			final String altitude = "" + location.getAltitude();
 			final String locationtime = "" + location.getTime();
+			final String attr = location.getAddrStr();
 			/**
 			 * 开始记录，定位数据上传并存在本地数据库
 			 */
-			if (MyApplication.isRecordFlag() && (!lastLat.equals(latitude))// 重复数据不保存
-					&& (!lastLon.equals(longitude))) {
+			if (MyApplication.isRecordFlag()/*&& location.getRadius()<=60*/) {//过滤精度大的点
+				final String rec;
+				if(lastLat.equals(latitude)&& lastLon.equals(longitude)){
+					rec="N";
+				}else{
+					rec="Y";
+				}
 				lastLat = latitude;
 				lastLon = longitude;
 				String url = MyApplication.ipAddress
@@ -151,7 +160,7 @@ public class LocationService extends Service {
 									record.setLocationtime(locationtime);
 									dao.addRecord(record);
 								} else {
-									L.i("server error");
+									//L.i("server error");
 								}
 							}
 						}, new ErrorListener() {
@@ -167,10 +176,13 @@ public class LocationService extends Service {
 						Map<String, String> map = new HashMap<String, String>();
 						map.put("action", RECORDINGTAG);
 						map.put("trace_id", trace_id);
+						map.put("rec", rec);
+						map.put("addr", attr);
 						map.put("longitude", longitude);
 						map.put("latitude", latitude);
 						map.put("locationtime", locationtime);
 						map.put("altitude", altitude);
+						map.put("mobile", selfmobile);
 						return map;
 					}
 				};

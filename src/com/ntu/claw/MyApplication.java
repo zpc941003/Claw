@@ -1,11 +1,15 @@
 package com.ntu.claw;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Application;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.baidu.location.BDLocation;
 import com.baidu.mapapi.SDKInitializer;
+import com.baidu.mapapi.map.Marker;
 
 public class MyApplication extends Application {
 	public static RequestQueue queues;
@@ -13,6 +17,7 @@ public class MyApplication extends Application {
 	//public static final String ipAddress="http://192.168.191.1:8080";
 	public static final String ipAddress="http://115.159.54.152:8080";
 	//public static final String ipAddress="http://182.254.245.15:8080";
+	
 	
 	/**
 	 * Î´¶ÁºÃÓÑÍ¨Öª
@@ -35,7 +40,7 @@ public class MyApplication extends Application {
 	
 	private static String trace_id = null;
 	
-	private static double distance = 0.0;
+	private static double distance = 0;
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -44,6 +49,7 @@ public class MyApplication extends Application {
 		SDKInitializer.initialize(getApplicationContext());
 		queues = Volley.newRequestQueue(getApplicationContext());
 	}
+
 
 	public static RequestQueue getHttpQueues() {
 		return queues;

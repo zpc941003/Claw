@@ -709,7 +709,7 @@ public final class DiskLruCache implements Closeable {
      * the cache.
      */
     public void delete() throws IOException {
-        close();
+        //close();
         deleteContents(directory);
     }
 

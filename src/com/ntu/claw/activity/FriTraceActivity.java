@@ -37,6 +37,7 @@ import com.baidu.mapapi.map.PolylineOptions;
 import com.baidu.mapapi.map.BaiduMap.OnMapLoadedCallback;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.model.LatLngBounds;
+import com.baidu.mapapi.utils.DistanceUtil;
 import com.ntu.claw.MyApplication;
 import com.ntu.claw.R;
 import com.ntu.claw.utils.MapUtils;
@@ -56,6 +57,7 @@ public class FriTraceActivity extends Activity {
 	private List<LatLng> mList=new ArrayList<LatLng>();
 	private BitmapDescriptor mMarker1;
 	private BitmapDescriptor mMarker2;
+	private boolean getDis=false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -123,6 +125,9 @@ public class FriTraceActivity extends Activity {
 					@Override
 					public void onResponse(String arg0) {
 						parse(arg0);
+						if(getDis){
+							tv_distance.setText((int)MapUtils.getDistance(mList)+"M");
+						}
 						initMap();
 						pd.dismiss();
 					}
@@ -175,18 +180,25 @@ public class FriTraceActivity extends Activity {
 		trace_id = intent.getStringExtra("trace_id");
 		tv_title.setText(intent.getStringExtra("st").substring(0, 10));
 		tv_starttime.setText(intent.getStringExtra("st").substring(11));
-		tv_endtime.setText(intent.getStringExtra("et").substring(11));
-		tv_distance.setText(intent.getStringExtra("dis") + "M");
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		try {
-			long l = df.parse(intent.getStringExtra("et")).getTime()
-					- df.parse(intent.getStringExtra("st")).getTime();
-			long h = l / (60 * 60 * 1000);
-			long m = l / (60 * 1000) - h * 60;
-			long s = l / 1000 - h * 60 * 60 - m * 60;
-			tv_duration.setText(h + "h" + m + "m" + s + "s");
-		} catch (ParseException e) {
-			e.printStackTrace();
+		String et=intent.getStringExtra("et");
+		if(et!=null&&et!=""){
+			tv_endtime.setText(intent.getStringExtra("et").substring(11));
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			try {
+				long l = df.parse(intent.getStringExtra("et")).getTime()
+						- df.parse(intent.getStringExtra("st")).getTime();
+				long h = l / (60 * 60 * 1000);
+				long m = l / (60 * 1000) - h * 60;
+				long s = l / 1000 - h * 60 * 60 - m * 60;
+				tv_duration.setText(h + "h" + m + "m" + s + "s");
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+		if(intent.getStringExtra("dis")!=null){
+			tv_distance.setText(intent.getStringExtra("dis") + "M");
+		}else{
+			getDis=true;
 		}
 	}
 

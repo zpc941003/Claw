@@ -12,14 +12,19 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.RequestQueue;
 import com.android.volley.Request.Method;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.android.volley.toolbox.ImageLoader.ImageListener;
 import com.ntu.claw.MyApplication;
 import com.ntu.claw.R;
 import com.ntu.claw.bean.FriAskBean;
@@ -31,12 +36,16 @@ public class FriAskAdapter extends BaseAdapter {
 
 	private List<FriAskBean> mlist = null;
 	private Context mContext;
-
+	private RequestQueue queue;
+	private ImageLoader imageLoader;
 	public static final String TAG = "agreefriask";
 
 	public FriAskAdapter(Context mContext, List<FriAskBean> list) {
 		this.mContext = mContext;
 		this.mlist = list;
+		queue = Volley.newRequestQueue(mContext);
+		imageLoader = new ImageLoader(queue,
+				new com.ntu.claw.cache.BitmapCache(mContext));
 	}
 
 	/**
@@ -70,6 +79,7 @@ public class FriAskAdapter extends BaseAdapter {
 					R.layout.row_invite_msg, null);
 			viewHolder.tvTitle = (TextView) view.findViewById(R.id.newFriname);
 			viewHolder.status = (Button) view.findViewById(R.id.user_state);
+			viewHolder.avater=(ImageView) view.findViewById(R.id.invite_avatar);
 			view.setTag(viewHolder);
 		} else {
 			viewHolder = (ViewHolder) view.getTag();
@@ -81,13 +91,17 @@ public class FriAskAdapter extends BaseAdapter {
 			viewHolder.status.setBackgroundDrawable(null);
 			viewHolder.status.setEnabled(false);
 		}
+		
+		ImageListener listener = ImageLoader.getImageListener(
+				viewHolder.avater, R.drawable.default_useravatar,
+				R.drawable.default_useravatar);
+		imageLoader.get(bean.getAvater(), listener);
 		/**
 		 * Õ¨“‚«Î«Û
 		 */
 		viewHolder.status.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				System.out.println("1");
 				acceptInvitation(viewHolder.status, bean);
 			}
 		});
@@ -145,5 +159,6 @@ public class FriAskAdapter extends BaseAdapter {
 	private static class ViewHolder {
 		TextView tvTitle;
 		Button status;
+		ImageView avater;
 	}
 }

@@ -92,8 +92,8 @@ public class SelfTraceActivity extends Activity {
 						.zIndex(5);
 				mBaiduMap.addOverlay(option);
 			} else {
-				OverlayOptions polyline = new PolylineOptions().width(15)
-						.color(0xAA7646D5).points(mList);
+				OverlayOptions polyline = new PolylineOptions().width(12)
+						.color(0xFF1296DB).points(mList);
 				mBaiduMap.addOverlay(polyline);
 				OverlayOptions option1 = new MarkerOptions()
 						.position(mList.get(0)).icon(mMarker1).zIndex(5);
@@ -126,19 +126,74 @@ public class SelfTraceActivity extends Activity {
 		mList = dao.getTraceRecord(trace_id);
 		tv_title.setText(trace.getStarttime().substring(0, 10));
 		tv_starttime.setText(trace.getStarttime().substring(11));
-		tv_endtime.setText(trace.getEndtime().substring(11));
-		tv_distance.setText(trace.getDistance() + "M");
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		try {
-			long l = df.parse(trace.getEndtime()).getTime()
-					- df.parse(trace.getStarttime()).getTime();
-			long h = l / (60 * 60 * 1000);
-			long m = l / (60 * 1000) - h * 60;
-			long s = l / 1000 - h * 60 * 60 - m * 60;
-			tv_duration.setText(h + "h" + m + "m" + s + "s");
-		} catch (ParseException e) {
-			e.printStackTrace();
+		String dis = trace.getDistance();
+		if (dis == null || dis == "") {
+			dis = "" + (int) MapUtils.getDistance(mList);
 		}
+		tv_distance.setText(dis + "M");
+		if (trace.getEndtime() != null && trace.getEndtime() != "") {
+			tv_endtime.setText(trace.getEndtime().substring(11));
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			try {
+				long l = df.parse(trace.getEndtime()).getTime()
+						- df.parse(trace.getStarttime()).getTime();
+				long h = l / (60 * 60 * 1000);
+				long m = l / (60 * 1000) - h * 60;
+				long s = l / 1000 - h * 60 * 60 - m * 60;
+				tv_duration.setText(h + "h" + m + "m" + s + "s");
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public List<LatLng> optimizePoints(List<LatLng> inPoint) {
+		int size = inPoint.size();
+		if (size < 5) {
+			return inPoint;
+		} else {
+			// Latitude
+			inPoint.set(
+					0,
+					new LatLng(
+							((3.0 * inPoint.get(0).latitude + 2.0
+									* inPoint.get(1).latitude
+									+ inPoint.get(2).latitude - inPoint.get(4).latitude) / 5.0),
+							((3.0 * inPoint.get(0).longitude + 2.0
+									* inPoint.get(1).longitude
+									+ inPoint.get(2).longitude - inPoint.get(4).longitude) / 5.0)));
+			inPoint.set(
+					1,
+					new LatLng(
+							((4.0 * inPoint.get(0).latitude + 3.0
+									* inPoint.get(1).latitude + 2
+									* inPoint.get(2).latitude + inPoint.get(3).latitude) / 10.0),
+							((4.0 * inPoint.get(0).longitude + 3.0
+									* inPoint.get(1).longitude + 2
+									* inPoint.get(2).longitude + inPoint.get(3).longitude) / 10.0)));
+
+			inPoint.set(
+					size - 2,
+					new LatLng((4.0 * inPoint.get(size - 1).latitude + 3.0
+							* inPoint.get(size - 2).latitude + 2
+							* inPoint.get(size - 3).latitude + inPoint
+							.get(size - 4).latitude) / 10.0, (4.0
+							* inPoint.get(size - 1).longitude + 3.0
+							* inPoint.get(size - 2).longitude + 2
+							* inPoint.get(size - 3).longitude + inPoint
+							.get(size - 4).longitude) / 10.0));
+			inPoint.set(
+					size - 1,
+					new LatLng((3.0 * inPoint.get(size - 1).latitude + 2.0
+							* inPoint.get(size - 2).latitude
+							+ inPoint.get(size - 3).latitude - inPoint
+							.get(size - 5).latitude) / 5.0, (3.0
+							* inPoint.get(size - 1).longitude + 2.0
+							* inPoint.get(size - 2).longitude
+							+ inPoint.get(size - 3).longitude - inPoint
+							.get(size - 5).longitude) / 5.0));
+		}
+		return inPoint;
 	}
 
 	private void initView() {

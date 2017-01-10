@@ -111,6 +111,17 @@ public class DiskLruCacheHelper {
         }  
         return bitmap;  
     }  
+    
+    /**
+     * 删除所有缓存
+     */
+    public void deleteCache(){
+    	try {
+			mDiskLruCache.delete();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
 	
 	/**
 	 * 获取版本号

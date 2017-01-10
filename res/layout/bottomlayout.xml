@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="200dp"
     android:background="#ffffff" >
-
+    
     <com.mindpin.android.circlebutton.CircleButton
         android:id="@+id/recordbtn"
         android:layout_width="128dp"

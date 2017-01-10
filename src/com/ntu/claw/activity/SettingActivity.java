@@ -1,11 +1,16 @@
 package com.ntu.claw.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -22,6 +27,7 @@ import com.ntu.claw.R;
 import com.ntu.claw.cache.DiskLruCacheHelper;
 import com.ntu.claw.db.DbManager;
 import com.ntu.claw.utils.SPUtils;
+import com.ntu.claw.utils.T;
 
 public class SettingActivity extends Activity implements OnClickListener {
 	private static final int SUBACTIVITY = 1;
@@ -37,6 +43,9 @@ public class SettingActivity extends Activity implements OnClickListener {
 	private RelativeLayout layoutOfflineMap;
 	private RelativeLayout selfRecord;
 	private RelativeLayout myinfo;
+	private RelativeLayout openGPS;
+	private RelativeLayout clearCache;
+	private RelativeLayout about;
 
 	private Context context;
 	private Button logoutBtn;
@@ -45,7 +54,7 @@ public class SettingActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_setting);
-		context=this;
+		context = this;
 		bottomMapBtn = (Button) findViewById(R.id.btn_map);
 		bottomContactBtn = (Button) findViewById(R.id.btn_contact);
 		bottomSettingBtn = (Button) findViewById(R.id.btn_setting);
@@ -55,7 +64,10 @@ public class SettingActivity extends Activity implements OnClickListener {
 		myinfo = (RelativeLayout) findViewById(R.id.re_myinfo);
 		tvName = (TextView) findViewById(R.id.tv_name);
 		tvMobile = (TextView) findViewById(R.id.tv_id);
-		avater=(ImageView) findViewById(R.id.iv_avatar);
+		avater = (ImageView) findViewById(R.id.iv_avatar);
+		openGPS = (RelativeLayout) findViewById(R.id.re_opengps);
+		clearCache=(RelativeLayout) findViewById(R.id.re_clearcache);
+		about=(RelativeLayout) findViewById(R.id.re_about);
 		bottomSettingBtn.setSelected(true);
 		tvName.setText(SPUtils.get(this, "selfname", "").toString());
 		tvMobile.setText("手机号:" + SPUtils.get(this, "mobile", "").toString());
@@ -73,11 +85,13 @@ public class SettingActivity extends Activity implements OnClickListener {
 			ImageRequest request = new ImageRequest(avaterUrl,
 					new Listener<Bitmap>() {
 						public void onResponse(Bitmap arg0) {
-							DiskLruCacheHelper.getInstance(context).writeToCache(avaterUrl, arg0);
+							DiskLruCacheHelper.getInstance(context)
+									.writeToCache(avaterUrl, arg0);
 							avater.setImageBitmap(arg0);
 						};
 					}, 0, 0, Config.RGB_565, new Response.ErrorListener() {
-						public void onErrorResponse(VolleyError arg0) {};
+						public void onErrorResponse(VolleyError arg0) {
+						};
 					});
 			MyApplication.getHttpQueues().add(request);
 		}
@@ -90,6 +104,9 @@ public class SettingActivity extends Activity implements OnClickListener {
 		layoutOfflineMap.setOnClickListener(this);
 		selfRecord.setOnClickListener(this);
 		myinfo.setOnClickListener(this);
+		openGPS.setOnClickListener(this);
+		clearCache.setOnClickListener(this);
+		about.setOnClickListener(this);
 	}
 
 	@Override
@@ -108,10 +125,12 @@ public class SettingActivity extends Activity implements OnClickListener {
 			break;
 		case R.id.btn_logout:
 			/**
-			 * 
 			 * applcation中的数据还原
-			 * 
 			 */
+			MyApplication.setRecordFlag(false);
+			MyApplication.setTrace_id(null);
+			MyApplication.setDistance(0.0);
+			MyApplication.location=null;
 			SPUtils.clear(this);
 			DbManager.getInstance().closeDB();
 			startActivity(new Intent(SettingActivity.this, LoginActivity.class));
@@ -128,8 +147,26 @@ public class SettingActivity extends Activity implements OnClickListener {
 			startActivityForResult(new Intent(this, MyInfoActivity.class),
 					SUBACTIVITY);
 			break;
+		case R.id.re_opengps:
+			openGPS();
+			break;
+		case R.id.re_clearcache:
+			DiskLruCacheHelper.getInstance(context).deleteCache();
+			T.showShort(context, "清除成功");
+			break;
+		case R.id.re_about:
+			startActivity(new Intent(this, AboutActivity.class));
+			break;
 		default:
 			break;
+		}
+	}
+
+	private void openGPS() {
+		if (isGpsEnabled()) {
+			T.showShort(this, "GPS已打开");
+		} else {
+			openGpsSettings();
 		}
 	}
 
@@ -147,5 +184,25 @@ public class SettingActivity extends Activity implements OnClickListener {
 		default:
 			break;
 		}
+	}
+
+	/**
+	 * 判断Gps是否可用
+	 * 
+	 * @return {@code true}: 是<br>
+	 *         {@code false}: 否
+	 */
+	public boolean isGpsEnabled() {
+		LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		return lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+	}
+
+	/**
+	 * 打开Gps设置界面
+	 */
+	public void openGpsSettings() {
+		Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(intent);
 	}
 }

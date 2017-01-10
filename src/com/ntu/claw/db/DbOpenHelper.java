@@ -35,6 +35,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
 			+ Dao.COLUMN_FRIENDMOBILE + " TEXT, "
 			+ Dao.COLUMN_FRIENDNAME + " TEXT, "
 			+ Dao.COLUMN_SELFMOBILE + " TEXT, "
+			+ Dao.COLUMN_AVATER + " TEXT, "
 			+ Dao.COLUMN_ISAGREE +" TEXT);";
 	
 	private static final String CREATE_TABLE_TRACE = "CREATE TABLE IF NOT EXISTS "
